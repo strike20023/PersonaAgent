@@ -1,6 +1,6 @@
 
-/data/ImplicitPersona/*
-/data/PersonaMem/*
+# /data/ImplicitPersona/*
+# /data/PersonaMem/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
