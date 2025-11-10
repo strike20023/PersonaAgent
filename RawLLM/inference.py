@@ -365,7 +365,7 @@ def run_evaluation(args, cmd_args, llm, split, split_idx, verbose=False):
     total_rows = count_csv_rows(question_path)
     idx=-1
     assert split_idx < split, f"split_idx {split_idx} should be less than split {split}"
-    for row_data, context in tqdm[tuple[dict, Any | None]](load_rows_with_context(question_path, context_path), total=total_rows):
+    for row_data, context in tqdm(load_rows_with_context(question_path, context_path), total=total_rows):
         idx+=1
         if idx%split != split_idx:
             continue
