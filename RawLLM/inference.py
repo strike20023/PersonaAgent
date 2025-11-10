@@ -4,7 +4,6 @@ import random
 from typing import Any
 import tiktoken
 import argparse
-import anthropic
 import transformers
 import yaml
 import re
