@@ -1,1 +1,1 @@
-seq 0 9 | xargs -n 1 -P 10 bash -c 'python inference.py --step evaluate --split 10 --split_idx $0'
+seq 0 9 | xargs -n 1 -P 10 -I {} bash -c 'OPENAI_API_BASE=http://20.66.31.2:12013/v1 python RawLLM/inference.py --model Qwen3-30B-A3B --step evaluate --question_path data/PersonaMem/questions_32k.csv --context_path data/PersonaMem/shared_contexts_32k.jsonl --result_path RawLLM/eval_results_{}.csv --split 10 --split_idx {}'
