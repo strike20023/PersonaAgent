@@ -485,6 +485,8 @@ if __name__ == "__main__":
     args = defaultdict(dict)
     args['models']['llm_model'] = cmd_args.model
 
+    os.makedirs(os.path.dirname(cmd_args.result_path), exist_ok=True)
+
     if re.search(r'gemini', cmd_args.model) is not None:
         from google import genai  # Gemini has conflicting requirements of the environment with OpenAI
         from google.genai.types import Part, UserContent, ModelContent
