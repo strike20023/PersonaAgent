@@ -478,6 +478,9 @@ if __name__ == "__main__":
     parser.add_argument('--context_path', type=str, default='data/shared_contexts_128k.jsonl', help='Path to the contexts JSONL file')
     parser.add_argument('--result_path', type=str, default='data/eval_results.csv', help='Path to save the results CSV file')
 
+    parser.add_argument('--split', type=int, default=10, help='Number of splits for evaluation')
+    parser.add_argument('--split_idx', type=int, default=0, help='Index of the split to evaluate')
+    
     cmd_args = parser.parse_args()
     from collections import defaultdict
     args = defaultdict(dict)
@@ -498,6 +501,6 @@ if __name__ == "__main__":
             prepare_benchmark_data(args, cmd_args, tokenizer=tokenizer, verbose=cmd_args.verbose)
 
     elif cmd_args.step == 'evaluate':
-        run_evaluation(args, cmd_args, llm, verbose=cmd_args.verbose)
+        run_evaluation(args, cmd_args, llm, cmd_args.split, cmd_args.split_idx, verbose=cmd_args.verbose)
     else:
         raise ValueError("Invalid step. Choose 'prepare' or 'evaluate'.")

@@ -1,0 +1,1 @@
+seq 0 9 | xargs -n 1 -P 10 bash -c 'python inference.py --step evaluate --split 10 --split_idx $0'
