@@ -2,7 +2,7 @@ import os
 import json
 import random
 from typing import Any
-import tiktoken
+# import tiktoken
 import argparse
 import transformers
 import yaml
@@ -450,14 +450,14 @@ if __name__ == "__main__":
     # except Exception as e:
     #     print('Error reading the config file')
 
-    torch.manual_seed(0)
-    world_size = torch.cuda.device_count()
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    # if world_size > 1:
-    #     assert world_size == 1
-    print('device', device)
-    print('torch.distributed.is_available', torch.distributed.is_available())
-    print('Using %d GPUs' % (torch.cuda.device_count()))
+    # torch.manual_seed(0)
+    # world_size = torch.cuda.device_count()
+    # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # # if world_size > 1:
+    # #     assert world_size == 1
+    # print('device', device)
+    # print('torch.distributed.is_available', torch.distributed.is_available())
+    # print('Using %d GPUs' % (torch.cuda.device_count()))
 
     # Command-line argument parsing
     parser = argparse.ArgumentParser(description='Command line arguments')
@@ -491,15 +491,9 @@ if __name__ == "__main__":
 
     base_dir = "./data/output"
     llm = Evaluation(args, cmd_args)
-    tokenizer = tiktoken.encoding_for_model("gpt-4o")
+    # tokenizer = tiktoken.encoding_for_model("gpt-4o")
 
-    if cmd_args.step == 'prepare':
-        if cmd_args.filter_questions:
-            prepare_benchmark_data(args, cmd_args, tokenizer=tokenizer, llm=llm, verbose=cmd_args.verbose)
-        else:
-            prepare_benchmark_data(args, cmd_args, tokenizer=tokenizer, verbose=cmd_args.verbose)
-
-    elif cmd_args.step == 'evaluate':
+    if cmd_args.step == 'evaluate':
         run_evaluation(args, cmd_args, llm, cmd_args.split, cmd_args.split_idx, verbose=cmd_args.verbose)
     else:
         raise ValueError("Invalid step. Choose 'prepare' or 'evaluate'.")
