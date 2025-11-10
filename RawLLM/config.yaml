@@ -1,0 +1,2 @@
+models:
+  llm_model: 'Qwen3-30B-A3B'

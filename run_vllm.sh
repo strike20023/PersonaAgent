@@ -1,0 +1,1 @@
+vllm serve /data/models/huangzhe/Qwen3-30B-A3B --served_model_name Qwen3-30B-A3B --config vllm.yaml
